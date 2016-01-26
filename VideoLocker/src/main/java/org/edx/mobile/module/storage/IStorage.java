@@ -86,7 +86,7 @@ public interface IStorage {
      * @param dmId
      * @return
      */
-    NativeDownloadModel getNativeDownload(long dmId);
+    NativeDownloadModel getNativeDownlaod(long dmId);
 
     /**
      * Returns List of Courses having downloaded videos.
