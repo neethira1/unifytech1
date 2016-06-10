@@ -86,7 +86,7 @@ public class MyRecentVideosFragment extends BaseFragment implements IPlayerEvent
         View view = inflater.inflate(R.layout.fragment_video_list_with_player_container, null);
         return view;
     }
-
+ 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
