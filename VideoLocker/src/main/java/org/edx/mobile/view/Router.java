@@ -82,13 +82,14 @@ public class Router {
         context.startActivity(launchIntent);
     }
 
-    public void showLogin(Context context) {
-        context.startActivity(LoginActivity.newIntent(context));
+    @NonNull
+    public Intent getLogInIntent() {
+        return LoginActivity.newIntent();
     }
 
-    public void showRegistration(Activity sourceActivity) {
-        Intent launchIntent = new Intent(sourceActivity, RegisterActivity.class);
-        sourceActivity.startActivity(launchIntent);
+    @NonNull
+    public Intent getRegisterIntent() {
+        return RegisterActivity.newIntent();
     }
 
     public void showMyCourses(Activity sourceActivity) {
@@ -268,7 +269,6 @@ public class Router {
         delegate.unsubscribeAll();
 
         showLaunchScreen(context);
-        showLogin(context);
     }
 
     public void showHandouts(Activity activity, EnrolledCoursesResponse courseData) {

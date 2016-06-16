@@ -1,10 +1,12 @@
 package org.edx.mobile.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import org.edx.mobile.authentication.LoginAPI;
 import org.edx.mobile.base.BaseFragmentActivity;
 import org.edx.mobile.model.api.FormFieldMessageBody;
 import org.edx.mobile.model.api.ProfileModel;
+import org.edx.mobile.model.api.RegisterResponse;
 import org.edx.mobile.model.api.RegisterResponseFieldError;
 import org.edx.mobile.module.analytics.ISegment;
 import org.edx.mobile.module.prefs.LoginPrefs;
@@ -38,6 +41,7 @@ import org.edx.mobile.task.RegisterTask;
 import org.edx.mobile.task.Task;
 import org.edx.mobile.util.ResourceUtil;
 import org.edx.mobile.util.images.ErrorUtils;
+import org.edx.mobile.util.images.IntentFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +61,11 @@ public class RegisterActivity extends BaseFragmentActivity
 
     @Inject
     LoginPrefs loginPrefs;
+
+    @NonNull
+    public static Intent newIntent() {
+        return IntentFactory.newIntentForComponent(RegisterActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

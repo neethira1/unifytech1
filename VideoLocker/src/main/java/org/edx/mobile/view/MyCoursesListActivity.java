@@ -23,7 +23,7 @@ public class MyCoursesListActivity extends BaseSingleFragmentActivity {
     public static Intent newIntent() {
         // These flags will make it so we only have a single instance of this activity,
         // but that instance will not be restarted if it is already running
-        return IntentFactory.newIntentForComponent()
+        return IntentFactory.newIntentForComponent(MyCoursesListActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
     }
 
