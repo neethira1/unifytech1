@@ -23,19 +23,6 @@ public class DiscoveryLaunchActivity extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final ActivityDiscoveryLaunchBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_discovery_launch);
-        binding.logIn.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(environment.getRouter().getLogInIntent());
-            }
-        });
-        binding.signUp.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                environment.getSegment().trackUserSignUpForAccount();
-                startActivity(environment.getRouter().getRegisterIntent());
-            }
-        });
         binding.discoverCourses.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
