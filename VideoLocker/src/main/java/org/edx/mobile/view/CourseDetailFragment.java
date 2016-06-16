@@ -321,7 +321,7 @@ public class CourseDetailFragment extends BaseFragment {
      */
     public void enrollInCourse() {
         if (null == environment.getLoginPrefs().getUsername()) {
-            startActivityForResult(LoginActivity.newIntent(), LOG_IN_REQUEST_CODE);
+            startActivityForResult(environment.getRouter().getRegisterIntent(), LOG_IN_REQUEST_CODE);
             return;
         }
         environment.getSegment().trackEnrollClicked(courseDetail.course_id, emailOptIn);

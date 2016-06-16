@@ -208,7 +208,7 @@ public abstract class FindCoursesBaseActivity extends BaseFragmentActivity imple
         if (environment.getLoginPrefs().getUsername() == null) {
             lastClickEnrollCourseId = courseId;
             lastClickEnrollEmailOptIn = emailOptIn;
-            startActivityForResult(environment.getRouter().getLogInIntent(), LOG_IN_REQUEST_CODE);
+            startActivityForResult(environment.getRouter().getRegisterIntent(), LOG_IN_REQUEST_CODE);
             return;
         }
 
