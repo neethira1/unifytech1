@@ -26,6 +26,7 @@ public class DiscoveryLaunchActivity extends BaseFragmentActivity {
         binding.discoverCourses.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                environment.getSegment().trackDiscoverCoursesClicked();
                 environment.getRouter().showFindCourses(DiscoveryLaunchActivity.this);
             }
         });
@@ -33,7 +34,9 @@ public class DiscoveryLaunchActivity extends BaseFragmentActivity {
         binding.exploreSubjects.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                environment.getSegment().trackExploreSubjectsClicked();
                 // FIXME: Where should this go?
+                // STOPSHIP
             }
         });
         environment.getSegment().trackScreenView(ISegment.Screens.LAUNCH_ACTIVITY);
