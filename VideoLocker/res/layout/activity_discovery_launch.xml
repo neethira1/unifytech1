@@ -30,7 +30,7 @@
                 style="@style/edX.Widget.BluePillButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/discover_courses" />
+                android:text="@string/launch_discover_courses" />
 
             <Button
                 android:id="@+id/explore_subjects"
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="@string/explore_subjects" />
+                android:text="@string/launch_explore_subjects" />
         </LinearLayout>
 
         <android.support.v4.widget.Space
