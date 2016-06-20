@@ -2,6 +2,7 @@ package org.edx.mobile.view;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,15 +31,19 @@ public class DiscoveryLaunchActivity extends BaseFragmentActivity {
                 environment.getRouter().showFindCourses(DiscoveryLaunchActivity.this);
             }
         });
-        binding.exploreSubjects.setVisibility(View.GONE); // TODO: delete this line once we implement listener
-        binding.exploreSubjects.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                environment.getSegment().trackExploreSubjectsClicked();
-                // FIXME: Where should this go?
-                // STOPSHIP
-            }
-        });
+        if (environment.getConfig().getCourseDiscoveryConfig().isWebviewCourseDiscoveryEnabled()
+                && !TextUtils.isEmpty(environment.getConfig().getCourseDiscoveryConfig().getWebViewConfig().getExploreSubjectsUrl())) {
+            binding.exploreSubjects.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    environment.getSegment().trackExploreSubjectsClicked();
+                    environment.getRouter().showExploreSubjects(DiscoveryLaunchActivity.this);
+                }
+            });
+        } else {
+            // Explore Subjects is only supported for web course discovery
+            binding.exploreSubjects.setVisibility(View.GONE);
+        }
         environment.getSegment().trackScreenView(ISegment.Screens.LAUNCH_ACTIVITY);
     }
 

@@ -310,6 +310,19 @@ public class Router {
         context.startActivity(findCoursesIntent);
     }
 
+    public void showExploreSubjects(@NonNull Context context) {
+        final Intent findCoursesIntent;
+        if (config.getCourseDiscoveryConfig().isWebviewCourseDiscoveryEnabled()) {
+            findCoursesIntent = new Intent(context, WebViewExploreSubjectsActivity.class);
+        } else {
+            // STOPSHIP: not implemented
+            throw new RuntimeException("Not implemented");
+        }
+        //Add this flag as multiple activities need to be created
+        findCoursesIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        context.startActivity(findCoursesIntent);
+    }
+
     public void showWebViewDialog(@NonNull Activity activity, @NonNull String url, @Nullable String dialogTitle) {
         activity.startActivity(WebViewDialogActivity.newIntent(activity, url, dialogTitle));
     }

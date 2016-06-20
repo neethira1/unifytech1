@@ -64,12 +64,6 @@ public abstract class FindCoursesBaseActivity extends BaseFragmentActivity imple
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        setTitle(getString(R.string.find_courses_title));
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         webview.onResume();

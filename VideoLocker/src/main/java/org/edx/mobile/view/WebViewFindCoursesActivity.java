@@ -35,10 +35,17 @@ public class WebViewFindCoursesActivity extends FindCoursesBaseActivity {
         super.onCreate(savedInstanceState);
         if (environment.getLoginPrefs().getUsername() != null) {
             configureDrawer();
+        } else {
+            blockDrawerFromOpening();
         }
         environment.getSegment().trackScreenView(ISegment.Screens.FIND_COURSES);
         webView = (WebView) findViewById(R.id.webview);
-        webView.loadUrl(environment.getConfig().getCourseDiscoveryConfig().getCourseSearchUrl());
+        webView.loadUrl(getInitialUrl());
+    }
+
+    @NonNull
+    protected String getInitialUrl() {
+        return environment.getConfig().getCourseDiscoveryConfig().getCourseSearchUrl();
     }
 
     @Override
@@ -88,6 +95,9 @@ public class WebViewFindCoursesActivity extends FindCoursesBaseActivity {
     }
 
     public void enableDrawerMenuButton(boolean showDrawer) {
+        if (mDrawerToggle == null) {
+            return;
+        }
         mDrawerToggle.setDrawerIndicatorEnabled(showDrawer);
     }
 

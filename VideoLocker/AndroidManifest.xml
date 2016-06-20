@@ -167,6 +167,12 @@
         </activity>
 
         <activity
+            android:name=".view.WebViewExploreSubjectsActivity"
+            android:label="@string/launch_explore_subjects"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
             android:name=".view.NativeFindCoursesActivity"
             android:label="@string/find_courses_title"
             android:screenOrientation="portrait">
