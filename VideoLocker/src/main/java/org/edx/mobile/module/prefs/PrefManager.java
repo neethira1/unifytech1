@@ -7,11 +7,12 @@ import android.support.annotation.Nullable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.edx.mobile.authentication.AuthResponse;
 import org.edx.mobile.base.MainApplication;
 import org.edx.mobile.logger.Logger;
-import org.edx.mobile.authentication.AuthResponse;
 import org.edx.mobile.model.api.ProfileModel;
 import org.edx.mobile.services.EdxCookieManager;
+import org.edx.mobile.user.ProfileImage;
 import org.edx.mobile.util.DateUtil;
 import org.edx.mobile.util.Sha1Util;
 
@@ -157,6 +158,20 @@ public class PrefManager {
         res.json = json;
         
         return res;
+    }
+
+    /**
+     * @return The current user's {@link ProfileImage} from the preferences.
+     */
+    @Nullable
+    public ProfileImage getCurrentUserProfileImage() {
+        String json = getString(Key.PROFILE_IMAGE);
+        if (json == null) {
+            return null;
+        }
+
+        Gson gson = new GsonBuilder().create();
+        return gson.fromJson(json, ProfileImage.class);
     }
     
     /**
@@ -332,6 +347,7 @@ public class PrefManager {
     public static final class Key {
         public static final String PROFILE_JSON = "profile_json";
         public static final String AUTH_JSON = "auth_json";
+        public static final String PROFILE_IMAGE = "profile_image";
         //TODO- need to rename these constants. causing confusion
         public static final String AUTH_TOKEN_SOCIAL = "facebook_token";
         public static final String AUTH_TOKEN_BACKEND = "google_token";
