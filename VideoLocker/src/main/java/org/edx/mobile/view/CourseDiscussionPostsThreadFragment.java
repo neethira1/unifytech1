@@ -212,18 +212,21 @@ public class CourseDiscussionPostsThreadFragment extends CourseDiscussionPostsBa
             @Override
             protected void onSuccess(CourseTopics courseTopics) throws Exception {
                 discussionTopic = courseTopics.getCoursewareTopics().get(0).getChildren().get(0);
-                if (!getArguments().getBoolean(ARG_DISCUSSION_HAS_TOPIC_NAME)) {
+                if (getActivity() != null &&
+                        !getArguments().getBoolean(ARG_DISCUSSION_HAS_TOPIC_NAME)) {
                     // We only need to set the title here when coming from a deep link
                     getActivity().setTitle(discussionTopic.getName());
                 }
 
-                if (populatePostListRunnable != null) {
-                    setProgressDialog(null);
-                    populatePostListRunnable.run();
-                }
+                if (getView() != null) {
+                    if (populatePostListRunnable != null) {
+                        setProgressDialog(null);
+                        populatePostListRunnable.run();
+                    }
 
-                // Now that we have the topic date, we can allow the user to add new posts.
-                createNewPostLayout.setEnabled(true);
+                    // Now that we have the topic date, we can allow the user to add new posts.
+                    createNewPostLayout.setEnabled(true);
+                }
             }
         };
         getTopicsTask.setProgressDialog(loadingIndicator);
@@ -315,6 +318,7 @@ public class CourseDiscussionPostsThreadFragment extends CourseDiscussionPostsBa
                 discussionTopic, postsFilter, postsSort, nextPage) {
             @Override
             public void onSuccess(Page<DiscussionThread> threadsPage) {
+                if (getView() == null) return;
                 ++nextPage;
                 callback.onPageLoaded(threadsPage);
 
@@ -333,6 +337,7 @@ public class CourseDiscussionPostsThreadFragment extends CourseDiscussionPostsBa
 
             @Override
             protected void onException(Exception ex) {
+                if (getView() == null) return;
                 // Don't display any error message if we're doing a silent
                 // refresh, as that would be confusing to the user.
                 if (!callback.isRefreshingSilently()) {
